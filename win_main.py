@@ -1076,7 +1076,7 @@ class WinMain(WahCade):
             '%s: %s' % (rom, self.lsGames[self.sclGames.get_selected()][GL_GAME_NAME]))
         #tweet and log message
         if self.twitter_api:
-                msg = self.procmsg(self.emu_ini.get('msg_format'))
+                msg = self.procmsg(self.wahcade_ini.get('msg_format'))
                 self.log_msg(self.post_tweet(msg[0:139]))
         #stop joystick poller
         if self.joy is not None:
