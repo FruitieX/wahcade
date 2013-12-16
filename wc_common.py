@@ -595,5 +595,5 @@ class WahCade:
             # Make substitution in msg string
             for i in msg_opts.iteritems():
                 msg = msg.replace(i[0],i[1])
-            msg = msg + self.tw_ctags
+            msg = msg + " " + time.strftime("%H:%M:%S") + " " + self.tw_ctags
         return msg
