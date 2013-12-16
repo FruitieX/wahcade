@@ -18,6 +18,8 @@ shuffle_music               0                              #shuffle music playli
 ### (Global) Screen-Saver Options ###
 delay                       300                            #screen saver delay in seconds (0 to disable)
 slide_duration              5                              #screen saver image / movie display in seconds
+saver_type                  slideshow                      #slideshow / blank_screen / movie / launch_scr
+scr_file                                                   #used for launch_scr option above, command to start a screen saver (eg. gnome-screensaver-command -a)
 
 ### Audio Options ###
 enable_sounds               0                              #N/A
@@ -113,13 +115,11 @@ movie_artwork_no                          1                                  #ar
 
 ### Screen-Saver Settings ###
 enable_music_in_screensaver               1                                  #N/A
-saver_type                                slideshow                          #slideshow / blank_screen / movie / launch_scr
 movie_path                                ~/emulators/mame/videos            #movie directory
 movie_fullscreen                          1                                  #N/A
 quit_delay                                30                                 #N/A
 wrapper_executable                                                           #N/A
 wrapper_commandline_format                [name]                             #N/A
-scr_file                                                                     #used for launch_scr option above, command to start a screen saver (eg. gnome-screensaver-command -a)
 
 ### External Application Settings ###
 ipc_file_or_path                                                             #N/A
