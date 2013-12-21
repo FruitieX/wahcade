@@ -93,6 +93,7 @@ class WinMain(WahCade):
         old_keyb_events = False
         debug_mode = False
         self.tw_api = None
+        self.twitter_api = None
         
         ### USER PROFILE
         self.userpath = os.path.expanduser(CONFIG_DIR)
@@ -1075,7 +1076,7 @@ class WinMain(WahCade):
             _('Starting...'),
             '%s: %s' % (rom, self.lsGames[self.sclGames.get_selected()][GL_GAME_NAME]))
         #tweet and log message
-        if not self.tw_api:
+        if not self.twitter_api:
             self.twitter_api = self.auth_twitter() ## Try re-authing with twitter
         if self.twitter_api:
                 msg = self.procmsg(self.wahcade_ini.get('msg_format'))
@@ -1838,7 +1839,7 @@ class WinMain(WahCade):
         vbox.pack_start(img)
         self.splash.add(vbox)
         self.splash.show_all()
-        if not self.tw_api:
+        if not self.twitter_api:
             self.twitter_api = self.auth_twitter() ## Auth Twitter during startup
         self.wait_with_events(0.25)
 
