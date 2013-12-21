@@ -543,33 +543,36 @@ class WahCade:
 
 
     def auth_twitter(self):
-        tw_error = []
-        if self.tw_oath_ckey == '':
-            tw_error.append('consumer_key')
-        if self.tw_oath_csecret == '':
-            tw_error.append('consumer_secret')
-        if self.tw_oath_akey == '':
-            tw_error.append('access_key')
-        if self.tw_oath_asecret == '':
-            tw_error.append('access_key')
+        try:
+            tw_error = []
+            if self.tw_oath_ckey == '':
+                tw_error.append('consumer_key')
+            if self.tw_oath_csecret == '':
+                tw_error.append('consumer_secret')
+            if self.tw_oath_akey == '':
+                tw_error.append('access_key')
+            if self.tw_oath_asecret == '':
+                tw_error.append('access_key')
 
-        if len(tw_error) > 0:
-            twitter_enabled = False
-            self.log_msg('[TWITTER] support disabled due to missing options')
-            for tw_error in tw_error:
-                self.log_msg('[TWITTER] %s cannot be blank in wahcade.ini, details available at https://dev.twitter.com/' % tw_error)
-            return
+            if len(tw_error) > 0:
+                twitter_enabled = False
+                self.log_msg('[TWITTER] support disabled due to missing options')
+                for tw_error in tw_error:
+                    self.log_msg('[TWITTER] %s cannot be blank in wahcade.ini, details available at https://dev.twitter.com/' % tw_error)
+                return
 
-        self.log_msg(('[TWITTER] Beginning OAuthentication'))
-        auth = tweepy.OAuthHandler(self.tw_oath_ckey,self.tw_oath_csecret)
-        auth.set_access_token(self.tw_oath_akey, self.tw_oath_asecret)
-        self.tw_api = tweepy.API(auth)
-        if not self.tw_api.verify_credentials():
-            self.log_msg('[TWITTER] Error! OAuthentication failure')
-            self.tw_api = None
-        else:
-            self.log_msg('[TWITTER] Logged in as: %s' % self.tw_api.me().name)
-        return self.tw_api
+            self.log_msg(('[TWITTER] Beginning OAuthentication'))
+            auth = tweepy.OAuthHandler(self.tw_oath_ckey,self.tw_oath_csecret)
+            auth.set_access_token(self.tw_oath_akey, self.tw_oath_asecret)
+            self.tw_api = tweepy.API(auth)
+            if not self.tw_api.verify_credentials():
+                self.log_msg('[TWITTER] Error! OAuthentication failure')
+                self.tw_api = None
+            else:
+                self.log_msg('[TWITTER] Logged in as: %s' % self.tw_api.me().name)
+            return self.tw_api
+        except tweepy.TweepError:
+            return None
 
     def post_tweet(self,msg):
         try:

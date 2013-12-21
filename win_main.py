@@ -1075,6 +1075,8 @@ class WinMain(WahCade):
             _('Starting...'),
             '%s: %s' % (rom, self.lsGames[self.sclGames.get_selected()][GL_GAME_NAME]))
         #tweet and log message
+        if not self.tw_api:
+            self.twitter_api = self.auth_twitter() ## Try re-authing with twitter
         if self.twitter_api:
                 msg = self.procmsg(self.wahcade_ini.get('msg_format'))
                 self.log_msg(self.post_tweet(msg[0:139]))
